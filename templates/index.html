@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Video Summarization</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="header-block center">
+        <h1>YouTube Video Summary Generator</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div id="processing-message" class="flash info" style="display: none;">
+            Processing video... this might take a minute.
+        </div>
+
+        <form id="video-form" method="post" action="{{ url_for('index') }}">
+            <input type="text" name="youtube_url" placeholder="Enter YouTube URL" required>
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+
+    <div class="container">
+        {% if title %}
+            <h2 class="center">Results for: {{ title }}</h2>
+
+            {% if summary %}
+                <h3>Summary:</h3>
+                <pre class="full-width">{{ summary }}</pre>
+            {% endif %}
+
+            {% if transcript %}
+                <details class="transcript-block">
+                    <summary>Show Transcript</summary>
+                    <pre class="full-width">{{ transcript }}</pre>
+                </details>
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <script>
+        document.getElementById('video-form').addEventListener('submit', function () {
+            document.getElementById('processing-message').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

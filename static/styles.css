@@ -1,0 +1,112 @@
+html, body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;   
+    background: #191c27;
+    color: #fff;
+}
+
+.header-block {
+    text-align: center;
+    padding: 20px;
+    background: #191c27;
+    z-index: 1000;
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+#processing-message {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 4px;
+    box-sizing: border-box;
+    border-left: 6px solid #2196F3;
+    white-space: normal;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 1100px;
+    margin: 180px auto 40px auto; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(74, 32, 32, 0.1);
+    box-sizing: border-box;
+}
+
+
+.center {
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 50%;
+    padding: 10px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+pre.full-width {
+    font-family: 'Georgia', serif;   
+    font-size: 16px;                 
+    width: 100%;
+    line-height: 1.5;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 6px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    color: #fff;
+}
+
+.flash.info {
+    background-color: #e7f3fe;
+    color: #31708f;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+.flash.danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-left: 6px solid #f44336;
+    border-radius: 4px;
+}
+
+.transcript-block {
+    margin-top: 20px;
+}
+
+.transcript-block summary {
+    font-weight: bold;
+    cursor: pointer;
+    background: #333;
+    padding: 10px;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.transcript-block[open] summary {
+    border-bottom: 1px solid #666;
+}
