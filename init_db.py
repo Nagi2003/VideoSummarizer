@@ -1,4 +1,4 @@
-from app import app, db
+from models import Base, engine
 
-with app.app_context():
-    db.create_all()
+Base.metadata.create_all(bind=engine)
+print("Database initialized.")

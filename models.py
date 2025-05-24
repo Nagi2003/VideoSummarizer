@@ -1,11 +1,19 @@
-from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import Column, Integer, String, Text, DateTime, create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+import os
 
-db = SQLAlchemy()
+DATABASE_URL = os.getenv("DATABASE_URL")
 
-class TranscriptSummary(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    youtube_url = db.Column(db.String(300), nullable=False)
-    title = db.Column(db.String(300), nullable=False)
-    transcript = db.Column(db.Text, nullable=False)
-    summary = db.Column(db.Text, nullable=False)
-    created_at = db.Column(db.DateTime, default=db.func.now())
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
+
+class TranscriptSummary(Base):
+    __tablename__ = "transcript_summary"
+    id = Column(Integer, primary_key=True, index=True)
+    youtube_url = Column(String(300), nullable=False)
+    title = Column(String(300), nullable=False)
+    transcript = Column(Text, nullable=False)
+    summary = Column(Text, nullable=False)
+    created_at = Column(DateTime, default=None)

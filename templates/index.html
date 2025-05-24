@@ -2,19 +2,16 @@
 <html>
 <head>
     <title>YouTube Video Summarization</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ request.url_for('static', path='styles.css') }}">
 </head>
 <body>
     <div class="header-block center">
         <h1>YouTube Video Summary Generator</h1>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="flash {{ category }}">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+        {% if flash %}
+            <div class="flash danger">{{ flash }}</div>
+        {% endif %}
+    
 
         <div id="processing-message" class="flash info" style="display: none;">
             Processing video... this might take a minute.
