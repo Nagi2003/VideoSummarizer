@@ -37,7 +37,6 @@ def get_video_title(url):
         return "video"
 
 
-
 def download_youtube_audio(url, filename="audio"):
     cookiefile_path = '/etc/secrets/cookies.txt'
     ydl_opts = {
