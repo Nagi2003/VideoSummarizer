@@ -1,5 +1,5 @@
-# Base image with Python 3.11
-FROM python:3.11-slim
+
+FROM python:3.13.1-slim
 
 # Install system dependencies (like ffmpeg)
 RUN apt-get update && \
