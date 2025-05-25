@@ -35,40 +35,15 @@ def get_video_title(url):
     except Exception as e:
         print(f"Failed to fetch video title: {e}")
         return "video"
-    
-def setup_ffmpeg():
-    ffmpeg_dir = os.path.join(os.getcwd(), "ffmpeg")
-    ffmpeg_bin = os.path.join(ffmpeg_dir, "ffmpeg")
 
-    if not os.path.exists(ffmpeg_bin):
-        print("Downloading ffmpeg...")
-        os.makedirs(ffmpeg_dir, exist_ok=True)
-        import urllib.request
-        import tarfile
-        # Download static ffmpeg build (Linux 64-bit)
-        url = "https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz"
-        tmp_tar_path = os.path.join(ffmpeg_dir, "ffmpeg.tar.xz")
-        urllib.request.urlretrieve(url, tmp_tar_path)
-
-        with tarfile.open(tmp_tar_path, "r:xz") as tar:
-            for member in tar.getmembers():
-                if member.name.endswith("/ffmpeg"):
-                    member.name = os.path.basename(member.name)
-                    tar.extract(member, ffmpeg_dir)
-        os.remove(tmp_tar_path)
-        print("ffmpeg setup complete.")
-    return ffmpeg_bin
 
 
 def download_youtube_audio(url, filename="audio"):
-    ffmpeg_path = setup_ffmpeg()
-    cookies_path = os.path.join(os.getcwd(), "cookies.txt") 
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': f'{filename}.%(ext)s',
-        # 'ffmpeg_location': r'C:\Users\Nagendra\Downloads\ffmpeg-n7.1.1-19-g4c78a357d0-win64-gpl-shared-7.1\bin',
-        'ffmpeg_location': ffmpeg_path,
-        'cookiefile': cookies_path,
+        'ffmpeg_location': r'C:\Users\Nagendra\Downloads\ffmpeg-n7.1.1-19-g4c78a357d0-win64-gpl-shared-7.1\bin',
+        'cookiefile': 'cookies.txt',
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
