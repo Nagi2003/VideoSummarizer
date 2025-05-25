@@ -7,6 +7,7 @@ from starlette.middleware.sessions import SessionMiddleware
 from models import engine, SessionLocal, Base, TranscriptSummary
 from utils import youtube_to_transcript_and_summary
 import os
+import uvicorn
 import dotenv
 
 dotenv.load_dotenv()
@@ -69,3 +70,7 @@ async def result(request: Request, entry_id: int):
         "title": entry.title,
         "flash": flash_message
     })
+    
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    uvicorn.run("app:app", host="0.0.0.0", port=port, reload=True)
