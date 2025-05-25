@@ -38,12 +38,17 @@ def get_video_title(url):
 
 
 def download_youtube_audio(url, filename="audio"):
-    cookiefile_path = '/etc/secrets/cookies.txt'
+    # cookiefile_path = '/etc/secrets/cookies.txt'
+    source_cookie_path = '/etc/secrets/cookies.txt'  
+    temp_cookie_path = '/tmp/cookies.txt'            
+    shutil.copy(source_cookie_path, temp_cookie_path)
+    
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': f'{filename}.%(ext)s',
         # 'ffmpeg_location': r'C:\Users\Nagendra\Downloads\ffmpeg-n7.1.1-19-g4c78a357d0-win64-gpl-shared-7.1\bin',
-        'cookiefile': cookiefile_path,
+        # 'cookiefile': cookiefile_path,
+        'cookiefile': temp_cookie_path,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
